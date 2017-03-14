@@ -72,10 +72,6 @@ install_apps() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    install_package "Flash" "flashplugin-installer"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     install_package "GIMP" "gimp"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -89,39 +85,6 @@ install_apps() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     install_package "ImageMagick" "imagemagick"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    if ! package_is_installed "opera"; then
-
-        add_key "https://deb.opera.com/archive.key" \
-            || print_error "Opera (add key)"
-
-        add_to_source_list "https://deb.opera.com/opera-stable/ stable non-free" "opera.list" \
-            || print_error "Opera (add to package resource list)"
-
-        update &> /dev/null \
-            || print_error "Opera (resync package index files)"
-
-    fi
-
-    # Automatically answer `Yes` to the `package configuration` prompt.
-    # https://github.com/alrra/dotfiles/issues/17
-
-    printf "opera-stable opera-stable/add-deb-source boolean true\n" \
-        | sudo debconf-set-selections
-
-    install_package "Opera" "opera-stable"
-
-    printf "opera-beta opera-beta/add-deb-source boolean true\n" \
-        | sudo debconf-set-selections
-
-    install_package "Opera Beta" "opera-beta"
-
-    printf "opera-developer opera-developer/add-deb-source boolean true\n" \
-        | sudo debconf-set-selections
-
-    install_package "Opera Developer" "opera-developer"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
