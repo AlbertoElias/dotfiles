@@ -126,7 +126,7 @@ main() {
     install_apps
 
     ask_for_confirmation "Do you want to install GUI apps?"
-    if ! answer_is_yes; then
+    if answer_is_yes; then
         install_gui_apps
     fi
     printf "\n"
