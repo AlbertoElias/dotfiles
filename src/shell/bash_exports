@@ -33,7 +33,7 @@ export HISTIGNORE="&:[bf]g:c:clear:history:exit:q:pwd:* --help"
 # Increase the maximum number of commands recorded
 # in the command history (default value is 500).
 
-export HISTSIZE=10000
+export HISTSIZE=1000
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -62,7 +62,7 @@ export MANPAGER="less -X"
 #
 # https://github.com/nodejs/node/blob/c948877688ff2b6a37f2c88724b656aae495c7b2/doc/api/repl.md#persistent-history
 
-export NODE_REPL_HISTORY_SIZE=10000
+export NODE_REPL_HISTORY_SIZE=1000
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

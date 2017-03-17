@@ -1,29 +1,29 @@
 [alias]
 
-    a   = commit --amend
-    br  = branch
-    c   = commit
-    ca  = !git add -A && git commit         # Commit all changes.
-    co  = checkout
-    cp  = cherry-pick
-    d   = diff
-    dc  = diff --cached
-    f   = fetch
-    g   = log --graph --pretty=custom       # Show custom graph.
-    l   = log --pretty=custom               # Show custom log.
-    lc  = shortlog --summary --numbered     # List contributors.
-    p   = push
-    r   = rebase
-    rlc = reset --hard HEAD~1               # Remove last commit.
-    s   = status
-    ulc = reset --soft HEAD~1               # Undo last commit.
-    w   = instaweb --httpd=webrick          # Start web-based visualizer.
+    gca   = commit --amend
+    gb  = branch
+    gc   = commit
+    gac  = !git add -A && git commit         # Commit all changes.
+    gco  = checkout
+    gcp  = cherry-pick
+    gd   = diff
+    gdc  = diff --cached
+    gf   = fetch
+    gg   = log --graph --pretty=custom       # Show custom graph.
+    gl   = log --pretty=custom               # Show custom log.
+    glc  = shortlog --summary --numbered     # List contributors.
+    gp   = push
+    gr   = rebase
+    grlc = reset --hard HEAD~1               # Remove last commit.
+    gs   = status
+    gulc = reset --soft HEAD~1               # Undo last commit.
+    gw   = instaweb --httpd=webrick          # Start web-based visualizer.
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Find commits by source code.
 
-    cc = "!f() { \
+    gcc = "!f() { \
         git log --pretty=custom --decorate --date=short -S\"$1\"; \
     }; f"
 
@@ -31,7 +31,7 @@
 
     # Find commits by commit message.
 
-    cm = "!f() { \
+    gcm = "!f() { \
         git log --pretty=custom --decorate --date=short --grep=\"$1\"; \
     }; f"
 
@@ -39,7 +39,7 @@
 
     # Credit an author on the latest commit.
 
-    credit = "!f() { \
+    gcredit = "!f() { \
         if [ -n \"$1\" ] && [ -n \"$2\" ]; then \
             git commit --amend --author \"$1 <$2>\" -C HEAD; \
         fi \
@@ -49,7 +49,7 @@
 
     # List remote branches.
 
-    lrb = "!f() { \
+    glrb = "!f() { \
         remote="${1:-origin}"; \
         git ls-remote --heads "$remote"; \
     }; f"
@@ -59,7 +59,7 @@
     # Merge GitHub pull request on top of the current branch or,
     # if a branch name is specified, on top of the specified branch.
 
-    mpr = "!f() { \
+    gmpr = "!f() { \
         declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
         declare branch=\"${2:-$currentBranch}\"; \
         if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
@@ -78,7 +78,7 @@
     # Remove the tag with the specified tag name if
     # exists and tag the latest commit with that name.
 
-    retag = "!f() { \
+    gretag = "!f() { \
         git tag -d "$1" &> /dev/null; \
         git tag $1; \
     }; f"
