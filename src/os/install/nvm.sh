@@ -18,8 +18,8 @@ add_nvm_configs() {
 
 export NVM_DIR=\"$NVM_DIRECTORY\"
 
-[ -f \"\$NVM_DIR/nvm.sh\" ] \\
-    && . \"\$NVM_DIR/nvm.sh\"
+#[ -f \"\$NVM_DIR/nvm.sh\" ] \\
+#    && . \"\$NVM_DIR/nvm.sh\"
 "
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
