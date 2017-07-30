@@ -8,6 +8,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 print_in_purple "\n • Installs\n\n"
 
 "./$(get_os)/main.sh"
-./nvm.sh
+curl -L https://git.io/n-install | bash
 ./npm.sh
 ./vim.sh
