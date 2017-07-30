@@ -258,26 +258,35 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    ./install/main.sh
+    ask_for_confirmation "Install apps?"
+    if answer_is_yes; then
+        ./install/main.sh
+    fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    ./preferences/main.sh
+    ask_for_confirmation "Configure OS?"
+    if answer_is_yes; then
+        ./preferences/main.sh
+    fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if cmd_exists "git"; then
+    ask_for_confirmation "Configure git?"
+    if answer_is_yes; then
+        if cmd_exists "git"; then
 
-        if [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
-            ./initialize_git_repository.sh "$DOTFILES_ORIGIN"
+            if [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
+                ./initialize_git_repository.sh "$DOTFILES_ORIGIN"
+            fi
+
+            # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+            if ! $skipQuestions; then
+                ./update_content.sh
+            fi
+
         fi
-
-        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-        if ! $skipQuestions; then
-            ./update_content.sh
-        fi
-
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
