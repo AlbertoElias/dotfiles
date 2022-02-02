@@ -12,7 +12,7 @@ upgrade
 ./build-essentials.sh
 
 ./git.sh
-./../nvm.sh
+curl -L https://git.io/n-install | bash
 ./browsers.sh
 ./compression_tools.sh
 ./image_tools.sh

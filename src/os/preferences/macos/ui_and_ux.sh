@@ -11,9 +11,6 @@ execute "defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool
          defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true" \
    "Avoid creating '.DS_Store' files on network or USB volumes"
 
-execute "defaults write com.apple.menuextra.battery ShowPercent -string 'NO'" \
-    "Hide battery percentage from the menu bar"
-
 execute "sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true" \
     "Show language menu in the top right corner of the boot screen"
 
@@ -29,7 +26,7 @@ execute "defaults write com.apple.print.PrintingPrefs 'Quit When Finished' -bool
 execute "defaults write com.apple.screencapture disable-shadow -bool true" \
     "Disable shadow in screenshots"
 
-execute "defaults write com.apple.screencapture location -string '$HOME/Desktop'" \
+execute "defaults write com.apple.screencapture location -string '$HOME/Screenshots'" \
     "Save screenshots to the Desktop"
 
 execute "defaults write com.apple.screencapture show-thumbnail -bool false" \
@@ -44,15 +41,6 @@ execute "defaults write com.apple.screensaver askForPassword -int 1 && \
 
 execute "defaults write -g AppleFontSmoothing -int 2" \
     "Enable subpixel font rendering on non-Apple LCDs"
-
-execute "defaults write -g AppleShowScrollBars -string 'Always'" \
-    "Always show scrollbars"
-
-execute "defaults write -g NSAutomaticWindowAnimationsEnabled -bool false" \
-    "Disable window opening and closing animations."
-
-execute "defaults write -g NSDisableAutomaticTermination -bool true" \
-    "Disable automatic termination of inactive apps"
 
 execute "defaults write -g NSNavPanelExpandedStateForSaveMode -bool true" \
     "Expand save panel by default"
@@ -69,25 +57,17 @@ execute "defaults write -g NSWindowResizeTime -float 0.001" \
 execute "defaults write -g PMPrintingExpandedStateForPrint -bool true" \
     "Expand print panel by default"
 
-execute "defaults write -g QLPanelAnimationDuration -float 0" \
-    "Disable opening a Quick Look window animations."
-
 execute "defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false" \
     "Disable resume system-wide"
 
-execute "sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string 'Laptop' && \
-         sudo scutil --set ComputerName 'laptop' && \
-         sudo scutil --set HostName 'laptop' && \
-         sudo scutil --set LocalHostName 'laptop'" \
+execute "sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string 'HoloMbp' && \
+         sudo scutil --set ComputerName 'HoloMbp' && \
+         sudo scutil --set HostName 'HoloMbp' && \
+         sudo scutil --set LocalHostName 'HoloMbp'" \
     "Set computer name"
 
 execute "sudo systemsetup -setrestartfreeze on" \
     "Restart automatically if the computer freezes"
-
-execute "sudo defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 0 && \
-         sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist && \
-         sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist" \
-    "Turn Bluetooth off"
 
 execute "for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
             sudo defaults write \"\${domain}\" dontAutoLoad -array \
@@ -96,7 +76,6 @@ execute "for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; 
          done \
             && sudo defaults write com.apple.systemuiserver menuExtras -array \
                 '/System/Library/CoreServices/Menu Extras/Bluetooth.menu' \
-                '/System/Library/CoreServices/Menu Extras/AirPort.menu' \
                 '/System/Library/CoreServices/Menu Extras/Battery.menu' \
                 '/System/Library/CoreServices/Menu Extras/Clock.menu'
         " \

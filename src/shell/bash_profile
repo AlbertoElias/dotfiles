@@ -52,6 +52,36 @@ unset -f source_bash_files
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+alias python=python3
+
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+export GOPATH="$HOME/code/go"
+
+export PATH="$N_PREFIX/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+export PATH="$HOME/.local/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin
+
+export NODE_OPTIONS=--max_old_space_size=4096
+export PYTHON="/usr/bin/python"
+export CHROME_BIN="/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/aeliasnet/google-cloud-sdk/path.bash.inc' ]; then . '/home/aeliasnet/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+
+if [ -f '/home/aeliasnet/google-cloud-sdk/completion.bash.inc' ]; then . '/home/aeliasnet/google-cloud-sdk/completion.bash.inc'; fi
+
+export PATH="/home/aeliasnet/.local/share/solana/install/active_release/bin:$PATH"
+
+. "$HOME/.cargo/env"
+
+eval `ssh-agent -s`
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Clear system messages (system copyright notice, the date
 # and time of the last login, the message of the day, etc.).
 

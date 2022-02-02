@@ -11,15 +11,15 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 ./bash.sh
 
 ./git.sh
-./../nvm.sh
-./browsers.sh
+curl -L https://git.io/n-install | bash
+# ./browsers.sh
 ./compression_tools.sh
 ./gpg.sh
 ./image_tools.sh
 ./misc.sh
-./misc_tools.sh
+# ./misc_tools.sh
 ./../npm.sh
-./tmux.sh
+# ./tmux.sh
 ./video_tools.sh
 ./../vim.sh
 ./vscode.sh
