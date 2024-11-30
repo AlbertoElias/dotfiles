@@ -319,15 +319,11 @@ let g:syntastic_mode_map = {
 " ----------------------------------------------------------------------
 
 function! GetGitBranchName()
-
     let branchName = ""
-
-    if exists("g:loaded_fugitive")
+    if exists("*fugitive#head")
         let branchName = "[" . fugitive#head() . "]"
     endif
-
     return branchName
-
 endfunction
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
