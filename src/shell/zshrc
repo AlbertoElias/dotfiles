@@ -1,0 +1,100 @@
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+export PATH="$N_PREFIX/bin:$PATH"
+
+export NODE_OPTIONS=--max_old_space_size=16384
+export PYTHON="/usr/bin/python3"
+alias python=python3
+alias pip=pip3
+alias clearnm="find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +"
+eval ssh-agent -s
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Clear system messages (system copyright notice, the date
+# and time of the last login, the message of the day, etc.).
+
+clear
+
+export PATH="/usr/local/bin:$PATH"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/albertoelias/mambaforge/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/albertoelias/mambaforge/etc/profile.d/conda.sh" ]; then
+        . "/Users/albertoelias/mambaforge/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/albertoelias/mambaforge/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+export EDITOR="vim".
+export PATH="$PATH:/Users/albertoelias/.foundry/bin"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH=$BUN_INSTALL/bin:$PATH
+
+# Enable Powerlevel10k instant prompt
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Set ZSH options
+setopt AUTO_CD              # Auto changes to a directory without typing cd
+setopt AUTO_PUSHD          # Push the old directory onto the stack on cd
+setopt PUSHD_IGNORE_DUPS   # Do not store duplicates in the stack
+setopt PUSHD_SILENT        # Do not print the directory stack after pushd or popd
+setopt CORRECT             # Spelling correction
+setopt EXTENDED_GLOB       # Extended globbing. Allows using regular expressions with *
+
+# History configurations
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=2000
+setopt HIST_VERIFY
+setopt SHARE_HISTORY          # Share history between sessions
+setopt EXTENDED_HISTORY       # Write the history file in the ":start:elapsed;command" format
+setopt INC_APPEND_HISTORY     # Write to the history file immediately, not when the shell exits
+setopt HIST_EXPIRE_DUPS_FIRST # Expire duplicate entries first when trimming history
+setopt HIST_IGNORE_DUPS       # Don't record an entry that was just recorded again
+setopt HIST_IGNORE_SPACE      # Don't record entries starting with a space
+
+# Load aliases if file exists
+[ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
+
+# Load custom functions if file exists
+[ -f "$HOME/.functions" ] && source "$HOME/.functions"
+
+# Initialize completion system
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+# Load syntax highlighting if installed
+[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Load autosuggestions if installed
+[ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Initialize starship prompt
+if command -v starship &> /dev/null; then
+    # Set terminal title
+    function set_win_title(){
+        echo -ne "\033]0; $(basename "$PWD") \007"
+    }
+    precmd_functions+=(set_win_title)
+
+    export STARSHIP_CONFIG=~/.config/starship.toml
+    eval "$(starship init zsh)"
+fi
+
+# Add these color settings for better terminal experience
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+
+alias pip=pip3

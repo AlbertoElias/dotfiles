@@ -291,6 +291,28 @@ main() {
         ./restart.sh
     fi
 
+    # Install zsh if not already installed
+    if ! command -v zsh >/dev/null 2>&1; then
+        printf "\n⚡️ Installing zsh\n"
+        brew install zsh
+    fi
+
+    # Install useful zsh plugins
+    printf "\n⚡️ Installing zsh plugins\n"
+    brew install zsh-syntax-highlighting
+    brew install zsh-autosuggestions
+    brew install starship
+
+    # Make zsh the default shell
+    if [ "$SHELL" != "$(which zsh)" ]; then
+        printf "\n⚡️ Changing default shell to zsh\n"
+        chsh -s "$(which zsh)"
+    fi
+
+    # Install additional CLI tools
+    brew install fzf
+    brew install exa
+    brew install bat
 }
 
 main "$@"

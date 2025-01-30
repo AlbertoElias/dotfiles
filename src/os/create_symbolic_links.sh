@@ -18,6 +18,8 @@ create_symlinks() {
         "shell/bash_profile"
         "shell/bash_prompt"
         "shell/bashrc"
+        "shell/zshrc"
+        "shell/starship.toml"
         "shell/curlrc"
         "shell/inputrc"
 
@@ -48,6 +50,12 @@ create_symlinks() {
 
         sourceFile="$(cd .. && pwd)/$i"
         targetFile="$HOME/.$(printf "%s" "$i" | sed "s/.*\/\(.*\)/\1/g")"
+
+        if [ "$sourceFile" = "shell/zshrc" ]; then
+            targetFile="$HOME/.zshrc"
+        elif [ "$sourceFile" = "shell/starship.toml" ]; then
+            targetFile="$HOME/.config/starship.toml"
+        fi
 
         if [ ! -e "$targetFile" ] || $skipQuestions; then
 

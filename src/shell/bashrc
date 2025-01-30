@@ -2,10 +2,3 @@
 
 [ -n "$PS1" ] \
     && . "$HOME/.bash_profile"
-export PATH="$PATH:/Users/albertoelias/.foundry/bin"
-
-export PATH="$PATH:/Users/albertoelias/.foundry/bin"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH=$BUN_INSTALL/bin:$PATH

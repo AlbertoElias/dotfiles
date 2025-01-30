@@ -57,7 +57,7 @@ alias python=python3
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 export PATH="$N_PREFIX/bin:$PATH"
 
-export NODE_OPTIONS=--max_old_space_size=4096
+export NODE_OPTIONS=--max_old_space_size=16384
 export PYTHON="/usr/bin/python"
 
 eval ssh-agent -s
@@ -87,3 +87,8 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 export EDITOR="vim".
+export PATH="$PATH:/Users/albertoelias/.foundry/bin"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH=$BUN_INSTALL/bin:$PATH
